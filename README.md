@@ -79,8 +79,10 @@ Teamup is a messaging app where users can send group or private messages from th
 <img src="https://github.com/JavaTeamUp/MessageApp/blob/master/sketch.JPG" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
+https://github.com/JavaTeamUp/MessageApp/blob/master/Digital-Wireframe_Mockups.JPG
 
 ### [BONUS] Interactive Prototype
+https://github.com/JavaTeamUp/MessageApp/blob/master/teamup.gif
 
 ## Schema 
 [This section will be completed in Unit 9]
