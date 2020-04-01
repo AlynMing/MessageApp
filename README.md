@@ -85,58 +85,102 @@ https://github.com/JavaTeamUp/MessageApp/blob/master/Digital-Wireframe_Mockups.J
 https://github.com/JavaTeamUp/MessageApp/blob/master/teamup.gif
 
 ## Schema 
-**Model: User**								
-Property	Type	Description					
-objectId	String	unique id for the user post (default field)
+
+Model: User		
+
+Property		Type	Description	
+
+objectId		String	unique id for the user post (default field)
+
 emailVerified	Boolean	verify user has a email address
-ACL	ACL	
-createdAt	Date	Date/Time user was created
-updatedAt	Date	Date/Time user was updated
-authData	Object	
-username	String	unique username for each user
-password	String	user's password
-email	String	user's email address
-fname	String	user's first name
-lname	String	user's last name
+
+ACL				ACL	
+
+createdAt		Date	Date/Time user was created
+
+updatedAt		Date	Date/Time user was updated
+
+authData		Object	
+
+username		String	unique username for each user
+
+password		String	user's password
+
+email			String	user's email address
+
+fname			String	user's first name
+
+lname			String	user's last name
+
 profileImage	File	user's profile image
-friendId	Pointer	user friends
+
+friendId		Pointer	user friends
+
 								
-**Model: Friends**								
-Property	Type	Description					
-objectId	String	unique id for the user post (default field)
-updatedAt	Date	Date/Time user was updated
-createdAt	Date	Date/Time user was created
-ACL	ACL	
-FirstName	String	Friend's First Name
-LastName	String	Friend's Last Name
+Model: Friends	
+
+Property		Type	Description	
+
+objectId		String	unique id for the user post (default field)
+
+updatedAt		Date	Date/Time user was updated
+
+createdAt		Date	Date/Time user was created
+ACL				ACL	
+
+FirstName		String	Friend's First Name
+
+LastName		String	Friend's Last Name
+
 profileImage	Pointer	user's profile image
-friendId	Pointer	user friends
+friendId		Pointer	user friends
+
 		
-**Model: Group**								
-Property	Type	Description					
+Model: Group
+
+Property	Type	Description	
+
 objectId	String	unique id for the user post (default field)
+
 updatedAt	Date	Date/Time user was updated
+
 createdAt	Date	Date/Time user was created
-ACL	ACL	
+
+ACL			ACL	
+
 groupName	String	Group's Name
-userId	String	unique id for the user post (default field)
+
+userId		String	unique id for the user post (default field)
+
 								
-**Model: Message**								
-Property	Type	Description					
+Model: Message
+
+Property	Type	Description
+
 objectId	String	unique id for the user post (default field)
+
 updatedAt	Date	Date/Time user was updated
+
 createdAt	Date	Date/Time user was created
-ACL	ACL	
-body	String	user chat conversation
-userId	String	unique id for the user post (default field)
-image	File	user file/image uploaded with message			
+
+ACL			ACL	
+
+body		String	user chat conversation
+
+userId		String	unique id for the user post (default field)
+
+image		File	user file/image uploaded with message			
 
 
 ### Networking
-***Profile Screen***							
-          (Read/GET) Query logged in user object							
-          (Update/PUT) Update user profile							
-          (Delete) Delete Account							
+
+Profile Screen							
+(Read/GET) Query logged in user object	
+
+(Update/PUT) Update user profile	
+
+(Delete) Delete Account		
+		  
 "// (Read/GET) Query all posts where user is user
 let query = PFQuery(className:""User"")
 query.whereKey(""userId"", equalTo: currentUser)
@@ -150,9 +194,11 @@ query.findObjectsInBackground { (message: [PFObject]?, error: Error?) in
    }
 }"							
 							
-***Group Screen***						
-          (Read/GET) Query all groups							
-          (Delete) Delete group							
+Group Screen		
+
+(Read/GET) Query all groups
+
+(Delete) Delete group							
 							
 "// (Read/GET) Query all groups where user is user
 let query = PFQuery(className:""Group"")
