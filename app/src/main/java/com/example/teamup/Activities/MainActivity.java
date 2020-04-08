@@ -160,9 +160,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.action_search:
                 //TODO: swap fragment here
                 break;
-            case R.id.action_shopcart:
+            //case R.id.action_shopcart:
                 //fragment = new CartFragment(cart);
-                break;
+                //break;
             default:
         }
 
