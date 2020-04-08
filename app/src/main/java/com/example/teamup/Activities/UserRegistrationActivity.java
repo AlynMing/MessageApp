@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.parse.SignUpCallback;
 
 
 import com.example.teamup.R;
@@ -19,6 +20,7 @@ import com.parse.ParseQuery;
 import com.parse.SaveCallback;
 
 import java.util.List;
+
 
 //----------------------------------------------------------------------------------
 //  The activity that allows a user to Register as a user
@@ -102,7 +104,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
             userQuery.findInBackground(new FindCallback<ParseObject>() {
                 @Override
                 public void done(List<ParseObject> objects, ParseException e) {
-                    //Log.d("users", "Retrieved " + objects.size() + " users");
+                    Log.d("users", "Retrieved " + objects.size() + " users");
 
                     if (objects != null) {
                         Toast.makeText(UserRegistrationActivity.this, "Username already taken", Toast.LENGTH_SHORT).show();

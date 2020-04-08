@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.teamup.R;
 import com.parse.FindCallback;
+import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseObject;
@@ -95,29 +96,25 @@ public class LoginActivity extends AppCompatActivity {
     // This function logs in the the user
     // This function validates the user credentials
     //----------------------------------------------------------------------------------
-    private void login(String user, String password) {
-
-        //Query to check user input against object (username)
-        ParseQuery<ParseObject> userQuery = ParseQuery.getQuery("User");
-        userQuery.whereEqualTo("username", user);
-        userQuery.whereEqualTo("password", password);
-        userQuery.findInBackground(new FindCallback<ParseObject>() {
+    private void login(final String username, String password){
+        // TODO: navigate to new activity if the user has signed properly
+        Log.i("Test", "LOGGING IN " + username);
+        ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-
-                //Log.d("TAG", "Amount:" + objects.size());
-                if (objects != null) {
-                    Log.d("users", "Retrieved " + objects.get(0).get("username"));
-
-                    Log.d("users", "Retrieved " + objects.size() + " users");
-
-                    String Id = objects.get(0).getObjectId();
-
-                    goMainActivity(Id);
+            public void done(ParseUser user, ParseException e) {
+                if(user != null){
+                    goMainActivity(user.getObjectId());
                 } else {
-                    Toast.makeText(LoginActivity.this, "Invalid user credentials", Toast.LENGTH_SHORT).show();
+                    int length = Toast.LENGTH_SHORT;
+                    String message = "LOG IN FAIL";
+
+                    Toast.makeText(getApplicationContext(), message, length).show();
+                    Log.e("Test", "ERROR: Username " + username + " not found");
+                    e.printStackTrace();
+                    return;
                 }
             }
+
         });
     }
 
