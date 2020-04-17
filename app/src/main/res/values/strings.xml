@@ -2,8 +2,28 @@
     <string name="app_name">Team Up</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="browse_btn">Want to Browse All Stores?</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="sign_up_here">Sign Up Here</string>
+    <string name="home">Home</string>
+    <string name="groups">Groups</string>
+    <string name="friends">Friends</string>
+    <string name="settings">Settings</string>
+    <string name="message_hint">Say anything</string>
+    <string name="send">Send</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="log_out">Log Out</string>
+    <string name="messages">Messages</string>
+    <string name="add_friend">Add Friend</string>
+    <string name="add_group">Add Group</string>
+    <string name="under_developmennt">Feature Under Development...</string>
+
+    <string name="title_activity_friends">Friends</string>
+    <string name="title_activity_groups" />
+    <string name="no_friends_to_add">No Friends To Add</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

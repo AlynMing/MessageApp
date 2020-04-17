@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:padding="5dp">
+    <ImageView
+        android:id="@+id/iv_avatar"
+        android:src="@drawable/ic_default_user_avatar"
+        android:scaleType="fitXY"
+        android:layout_width="56px"
+        android:layout_height="56px" />
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/tv_names"
+        android:layout_width="0dp"
+        android:textSize="22sp"
+        android:text="John Doe"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+    <ImageView
+        android:id="@+id/iv_add_friend"
+        android:src="@drawable/ic_add"
+        android:layout_width="32dp"
+        android:layout_height="32dp" />
+</LinearLayout>

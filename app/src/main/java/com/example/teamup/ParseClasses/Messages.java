@@ -6,9 +6,9 @@ import com.parse.ParseObject;
 //----------------------------------------------------------------------------------
 // Creating an object for each group
 //----------------------------------------------------------------------------------
-@ParseClassName("Group")
-public class Groups extends ParseObject {
+@ParseClassName("Messages")
+public class Messages extends ParseObject {
 
-    public Groups() { super(); }
+    public Messages() { super(); }
 
 }

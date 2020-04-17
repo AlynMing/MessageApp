@@ -1,5 +1,5 @@
 package com.example.teamup.Activities;
-import androidx.appcompat.app.AppCompatActivity;
+
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -8,7 +8,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
+import org.json.JSONException;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 
@@ -45,7 +51,6 @@ public class UserRegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_registration);
-
         etfname = findViewById(R.id.userReg_fname);
         etlname = findViewById(R.id.userReg_lname);
         etemail = findViewById(R.id.userReg_email);
@@ -104,16 +109,19 @@ public class UserRegistrationActivity extends AppCompatActivity {
             userQuery.findInBackground(new FindCallback<ParseObject>() {
                 @Override
                 public void done(List<ParseObject> objects, ParseException e) {
-                    Log.d("users", "Retrieved " + objects.size() + " users");
-
-                    if (objects != null) {
+                    Log.d("ASA TEST", " " + objects.size());
+                    for(int i = 0; i < objects.size(); i++){
+                        Log.d("users", "Retrieved " + objects.get(i).get("username") + " users");
+                    }
+                    register(fname, lname, username, email, password);
+                    /*if (objects.size() != 0) {
                         Toast.makeText(UserRegistrationActivity.this, "Username already taken", Toast.LENGTH_SHORT).show();
-                        Log.d("users", "Retrieved " + objects.get(0).get("username"));
-                        Log.d("users", "Retrieved " + objects.size() + " users");
+                        //Log.d("users", "Retrieved " + objects.get(0).get("username"));
+                        //Log.d("users", "Retrieved " + objects.size() + " users");
                     }
                     else{
                         register(fname, lname, username, email, password);
-                    }
+                    }*/
                 }
             });
         }
@@ -124,33 +132,50 @@ public class UserRegistrationActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------
     private void register(String fname, String lname, String username, String email, String password) {
 
-        ParseObject User = ParseObject.create("User");
-        User.put("fname", fname );
-        User.put("lname", lname );
-        User.put("email", email);
-        User.put("username", username);
-        User.put("password", password);
+        ParseUser User = new ParseUser();
+        User.setUsername(username);
+        User.setPassword(password);
+        User.setEmail(email);
+        User.put("fname", fname);
+        User.put("lname", lname);
         //parseUser.put(user.KEY_PHONENUM, phonenum);
 
-
-        User.saveInBackground(new SaveCallback() {
+        User.signUpInBackground(new SignUpCallback() {
             @Override
             public void done(ParseException e) {
-                if (e != null){
-                    Log.e(ERROR, "Error in signing up user");
-                    e.printStackTrace();
-                    return;
-                }
-                Log.d(SIGNUP, "Sign Up Successful");
-                etfname.setText("");
-                etlname.setText("");
-                etusername.setText("");
-                etpassword.setText("");
-                etemail.setText("");
-                //etphonenum.setText("");
-
+                    if (e != null){
+                        Log.e(ERROR, "Error in signing up user");
+                        e.printStackTrace();
+                        return;
+                    }
+                    Log.d(SIGNUP, "Sign Up Successful");
+                    etfname.setText("");
+                    etlname.setText("");
+                    etusername.setText("");
+                    etpassword.setText("");
+                    etemail.setText("");
+                    //etphonenum.setText("");
             }
         });
+
+//        User.saveInBackground(new SaveCallback() {
+//            @Override
+//            public void done(ParseException e) {
+//                if (e != null){
+//                    Log.e(ERROR, "Error in signing up user");
+//                    e.printStackTrace();
+//                    return;
+//                }
+//                Log.d(SIGNUP, "Sign Up Successful");
+//                etfname.setText("");
+//                etlname.setText("");
+//                etusername.setText("");
+//                etpassword.setText("");
+//                etemail.setText("");
+//                //etphonenum.setText("");
+//
+//            }
+//      });
 
         ProgressDialog dialog = ProgressDialog.show(UserRegistrationActivity.this, "",
                 "Loading. Please wait...", true);

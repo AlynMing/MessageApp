@@ -3,7 +3,6 @@
     <color name="colorPrimary">#5c5779</color>
     <color name="colorPrimaryDark">#3e3b52</color>
     <color name="colorAccent">#B1CF5F</color>
-    <color name="colorPara_btn">#5c5779</color>
-    <color name="colorBtn_back">#B1CF5F</color>
+    <color name="colorWhite">#FFFFFF</color>
     <color name="colorHead_Subhead">#5c5779</color>
 </resources>

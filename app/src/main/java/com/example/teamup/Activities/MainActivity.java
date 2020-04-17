@@ -8,17 +8,21 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 
 
+import com.example.teamup.Fragments.FragmentHome;
 import com.example.teamup.R;
 import com.google.android.material.navigation.NavigationView;
 //import com.example.teamup.fragments.ProfileFragment;
@@ -27,13 +31,14 @@ import com.google.android.material.navigation.NavigationView;
 // The activity that sets up the framework for the app
 // Shows the main page the user gets redirected to
 //----------------------------------------------------------------------------------
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, FragmentHome.IFragmentHome {
 
-    private String user_id;
-    private static final String LISTORDERS = "LISTORDERS";
-    private final String WHERE = "WHERE";
-    private final String CATEGORY = "CATEGORY";
-    private final String CART = "CART";
+    public static final String EXTRA_USER_ID = "username_ID";
+    private String userID;
+    //private static final String LISTORDERS = "LISTORDERS";
+    //private final String WHERE = "WHERE";
+    //private final String CATEGORY = "CATEGORY";
+    //private final String CART = "CART";
     private final FragmentManager fragmentManager = getSupportFragmentManager();
     private ImageView back;
     private Boolean home = false;
@@ -52,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         ImageView back = findViewById(R.id.back_btn);
         setSupportActionBar(toolbar);
-        //customer_id = getIntent().getStringExtra("customer_ID");
+        userID = getIntent().getStringExtra(EXTRA_USER_ID);
 
 
         //----------------------------------------------------------------------------------
@@ -67,14 +72,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.add(R.id.flContainer, new FragmentHome());
+        ft.commit();
+
         //----------------------------------------------------------------------------------
         //Set Container for Fragments
         //----------------------------------------------------------------------------------
         //CategoryFragment homeFragment = new CategoryFragment(cart);
         //fragmentManager.beginTransaction()
-          //      .replace(R.id.flContainer, homeFragment, CATEGORY)
-            //    .addToBackStack(CATEGORY)
-              //  .commit();
+        //      .replace(R.id.flContainer, homeFragment, CATEGORY)
+        //    .addToBackStack(CATEGORY)
+        //  .commit();
 
         //----------------------------------------------------------------------------------
         // Functionality for back button
@@ -95,26 +104,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         switch(item.getItemId()){
-
-            case R.id.nav_home:
-                //CategoryFragment homeFragment = new CategoryFragment(cart);
-                fragmentManager.beginTransaction()
-                        //.replace(R.id.flContainer, homeFragment, CATEGORY)
-                        .addToBackStack(CATEGORY)
-                        .commit();
-                break;
-            case R.id.nav_friends:
-                break;
-            case R.id.nav_groups:
-
-                //ListOrdersFragment ordersFragment = new ListOrdersFragment(customer_id, cart);
-                fragmentManager.beginTransaction()
-                       // .replace(R.id.flContainer, ordersFragment, LISTORDERS)
-                        .addToBackStack(CATEGORY)
-                        .commit();
-                break;
-            case R.id.nav_settings:
-                break;
 
         }
 
@@ -151,35 +140,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //Creating Functionality for buttons on toolbar
     //----------------------------------------------------------------------------------
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-
-        //Fragment fragment = new CategoryFragment(cart);
-
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                //TODO: swap fragment here
-                break;
-            //case R.id.action_shopcart:
-                //fragment = new CartFragment(cart);
-                //break;
-            default:
+    public boolean onOptionsItemSelected(MenuItem item) { switch (item.getItemId()) {
         }
-
-        fragmentManager.beginTransaction()
-               // .replace(R.id.flContainer, fragment)
-                .addToBackStack(CART)
-                .commit();
-
-
         return true;
-        //return super.onOptionsItemSelected(item);
     }
 
 
-    public void hideButton(Boolean b){
-        home = b;
+    @Override
+    public void onViewFriends() {
+        Intent i = new Intent(this, ActivityFriends.class);
+        i.putExtra(EXTRA_USER_ID, userID);
+        startActivity(i);
+    }
+
+    @Override
+    public void onLogout() {
+        finish();
+    }
+
+    @Override
+    public void onViewGroups() {
+        Intent i = new Intent(this, ActivityGroups.class);
+        startActivity(i);
     }
 
 
+    @Override
+    public void onViewMessages() {
+        Intent i = new Intent(this, ActivityMessages.class);
+        startActivity(i);
+    }
 }

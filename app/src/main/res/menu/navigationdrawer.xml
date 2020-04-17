@@ -7,19 +7,24 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
-            android:title="Home" />
+            android:title="@string/home" />
+
         <item
+            android:id="@+id/nav_messages"
+            android:icon="@android:drawable/sym_action_chat"
+            android:title="Messages" />
+        <!--<item
             android:id="@+id/nav_groups"
             android:icon="@drawable/group"
-            android:title="Groups" />
+            android:title="@string/groups" />-->
         <item
             android:id="@+id/nav_friends"
             android:icon="@drawable/friends"
-            android:title="Friends" />
+            android:title="@string/friends" />
         <item
             android:id="@+id/nav_settings"
             android:icon="@android:drawable/ic_menu_preferences"
-            android:title="Settings" />
+            android:title="@string/settings" />
     </group>
 
 </menu>

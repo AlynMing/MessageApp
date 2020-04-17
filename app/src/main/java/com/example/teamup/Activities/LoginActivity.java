@@ -1,7 +1,5 @@
 package com.example.teamup.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,15 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.teamup.R;
-import com.parse.FindCallback;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
-import com.parse.ParseQuery;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
-
-import java.util.List;
 
 //----------------------------------------------------------------------------------
 // The activity that allows a user to Login
@@ -31,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private final String LOGGED = "LOGGED";
     private EditText etUsername;
     private EditText etPassword;
-    private TextView btnSignUp;
+    private TextView btn_SignUp;
     private Button btnSignIn;
     private ImageView imvIcon;
     //----------------------------------------------------------------------------------
@@ -47,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.login_password);
         imvIcon = findViewById(R.id.login_icon);
         btnSignIn = findViewById(R.id.signin_btn);
-        btnSignUp = findViewById(R.id.btn_SignUp);
+        btn_SignUp = findViewById(R.id.btn_SignUp);
 
         //----------------------------------------------------------------------------------
         // Listen for a click on the Sign In Button
@@ -71,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         //----------------------------------------------------------------------------------
         // Listen for a click on the Sign Up Button
         //----------------------------------------------------------------------------------
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
+        btn_SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goUserRegistration();
@@ -124,9 +119,9 @@ public class LoginActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------
     private void goMainActivity(String id) {
         Intent intent = new Intent(getBaseContext(), MainActivity.class);
-        intent.putExtra("username_ID", id);
+        intent.putExtra(MainActivity.EXTRA_USER_ID, id);
         startActivity(intent);
-        finish();
+        //finish();
     }
 }
 
