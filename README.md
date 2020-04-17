@@ -28,9 +28,9 @@ Teamup is a messaging app where users can send friends private messages from the
 
 **Required Must-have Stories**
 
-* User can register an account - complete
+* User can register an account - completed
 * User can create message
-* User can add friends
+* User can add friends - completed
 * Add profile picture
 * User can view all messages
 
