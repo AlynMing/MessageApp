@@ -11,7 +11,7 @@ Unit 8: Group Milestone - README
 
 ## Overview
 ### Description
-Teamup is a messaging app where users can send group or private messages from their device. Users can chat with other users and share images. It’s a simple, quickly and easy way to keep in touch with co-workers or friends and family.
+Teamup is a messaging app where users can send friends private messages from their device. Users can chat with users and share images. It’s a simple, quick and easy way to keep in touch with co-workers, friends and family.
 
 ### App Evaluation
 - **Category:**
@@ -39,6 +39,8 @@ Teamup is a messaging app where users can send group or private messages from th
 
 * User can search messages
 * User can change settings
+* Add location
+* Take pictures
 
 
 ### 2. Screen Archetypes
