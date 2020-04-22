@@ -21,7 +21,8 @@
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:src="@drawable/ic_new_friend"
-                android:tint="#3e3b52" />
+                android:tint = "@color/design_default_color_primary_dark" />
+
             <TextView
                 android:layout_marginLeft="20dp"
                 android:layout_width="wrap_content"
@@ -29,14 +30,14 @@
                 android:textSize="18sp"
                 android:text="@string/add_friend" />
         </LinearLayout>
-        <LinearLayout
+       <LinearLayout
         android:clickable="true"
         android:id="@+id/ll_add_group"
         android:padding="10dp"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
+        <!--ImageView
             android:src="@drawable/ic_new_group"
             android:layout_width="38dp"
             android:layout_height="38dp"/>
@@ -45,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:text="@string/add_group" />
+            android:text="@string/add_group" /-->
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -61,7 +62,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="No Friends"
-            android:textSize="18sp"
+            android:textSize="22sp"
             android:visibility="gone" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_friends"

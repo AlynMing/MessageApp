@@ -97,7 +97,7 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
     public interface IFragmentHome {
         public void onViewFriends();
         public void onLogout();
-        public void onViewGroups();
+        //public void onViewGroups();
         public void onViewMessages();
     }
 }

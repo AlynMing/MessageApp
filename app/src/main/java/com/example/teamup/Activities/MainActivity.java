@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
@@ -37,8 +38,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private String userID;
     //private static final String LISTORDERS = "LISTORDERS";
     //private final String WHERE = "WHERE";
-    //private final String CATEGORY = "CATEGORY";
-    //private final String CART = "CART";
+    //private final String ActivityMessages = "MESSAGES";
+    //private final String ActivityFriends = "FRIENDS";
     private final FragmentManager fragmentManager = getSupportFragmentManager();
     private ImageView back;
     private Boolean home = false;
@@ -104,6 +105,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         switch(item.getItemId()){
+            case R.id.nav_home:
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
+               //Toast.makeText(MainActivity.this, "nav_home", Toast.LENGTH_SHORT).show();
+            case R.id.nav_messages:
+                //Toast.makeText(MainActivity.this, "nav_messages", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, ActivityMessages.class));
+                break;
+            case R.id.nav_friends:
+                //Toast.makeText(MainActivity.this, "nav_friends", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, ActivityFriends.class));
+                break;
+            case R.id.nav_profile:
+                //Toast.makeText(MainActivity.this, "nav_profile", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, ActivityProfile.class));
+                break;
 
         }
 
@@ -132,7 +149,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_top_nav, menu);
-
         return true;
     }
 
@@ -158,16 +174,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         finish();
     }
 
-    @Override
+   /* @Override
     public void onViewGroups() {
         Intent i = new Intent(this, ActivityGroups.class);
+        i.putExtra(EXTRA_USER_ID, userID);
         startActivity(i);
-    }
+    }*/
 
 
     @Override
     public void onViewMessages() {
         Intent i = new Intent(this, ActivityMessages.class);
+        i.putExtra(EXTRA_USER_ID, userID);
         startActivity(i);
     }
 }

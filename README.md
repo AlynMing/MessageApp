@@ -28,7 +28,9 @@ Teamup is a messaging app where users can send friends private messages from the
 
 **Required Must-have Stories**
 
-* User can register an account - completed
+* User can register and log into an account - completed
+* User can add new friends - completed
+* User can view all friends- completed
 * User can create message
 * User can add friends - completed
 * Add profile picture
@@ -45,8 +47,8 @@ Teamup is a messaging app where users can send friends private messages from the
 
 ### 2. Screen Archetypes
 
-* Login- complete
-* Register – User can sign-up for an account- completed
+* Login
+* Register – User can sign-up for an account
 * Logout
 * Chat Screen – Users can start a new chat and view previous chats.
 * Profile Screen – Allow users to update info and pictures.
@@ -62,17 +64,17 @@ Teamup is a messaging app where users can send friends private messages from the
 
 **Flow Navigation** (Screen to Screen)
 
-* Splash/Signup - completed
-* Create Account - completed
-* Login - completed
-   * Home Screen - completed
+* Splash/Signup
+* Create Account
+* Login
+   * Home Screen
 * Groups
    * Create Group - This feature is no longer valid. We now only allow users of the app to add one another as friends.
    * View Groups - n/a
    * Remove Group - n/a
 * Friends
-   * View Friends - completed
-   * Add Friends - completed
+   * View Friends
+   * Add Friends
    * Remove Friends   
 * Messages
     * Create a new message to a friend

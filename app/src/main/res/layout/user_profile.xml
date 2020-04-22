@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".Activities.UserRegistrationActivity">
+    tools:context=".Activities.ActivityProfile">
 
     <ImageView
         android:id="@+id/login_icon2"
@@ -120,7 +120,7 @@
         android:layout_height="40dp"
         android:layout_marginBottom="28dp"
         android:background="#5c5779"
-        android:text="SUBMIT"
+        android:text="UPDATE"
         android:textColor="#ffffff"
         android:textSize="14sp"
         android:textStyle="bold"
@@ -156,7 +156,7 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Account Setup"
+        android:text="User Profile"
         android:textColor="#5c5779"
         android:textSize="24sp"
         android:textStyle="bold"

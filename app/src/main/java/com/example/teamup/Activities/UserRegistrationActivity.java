@@ -8,9 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioGroup;
 import android.widget.Toast;
-import org.json.JSONException;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,7 +21,6 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.SaveCallback;
 
 import java.util.List;
 
@@ -51,14 +48,14 @@ public class UserRegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_registration);
-        etfname = findViewById(R.id.userReg_fname);
-        etlname = findViewById(R.id.userReg_lname);
-        etemail = findViewById(R.id.userReg_email);
-        etpassword = findViewById(R.id.userReg_password);
-        etusername = findViewById(R.id.userReg_username);
+        etfname = findViewById(R.id.userProf_fname);
+        etlname = findViewById(R.id.userProf_lname);
+        etemail = findViewById(R.id.userProf_email);
+        etpassword = findViewById(R.id.userProf_password);
+        etusername = findViewById(R.id.userProf_username);
         //etphonenum = findViewById(R.id.userReg_phone);
         btn_Cancel = findViewById(R.id.btn_Cancel);
-        btn_Submit = findViewById(R.id.btn_Submit);
+        btn_Submit = findViewById(R.id.btn_Update);
 
         //----------------------------------------------------------------------------------
         //  Listening for a click on the Sign Up button
