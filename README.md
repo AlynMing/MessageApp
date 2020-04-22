@@ -33,6 +33,7 @@ Teamup is a messaging app where users can send friends private messages from the
 * User can view all friends- completed
 * User can create message
 * User can add friends - completed
+* User profile screen - created
 * Add profile picture
 * User can view all messages
 
