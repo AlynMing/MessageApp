@@ -130,6 +130,8 @@ public class ActivityFriends extends AppCompatActivity implements View.OnClickLi
                         addedfriendsAdapter = new AddedFriendAdapter(parsedFriendsList);
                         rvFriends.setLayoutManager(new LinearLayoutManager(context));
                         rvFriends.setAdapter(addedfriendsAdapter);
+                    } else {
+                        addedfriendsAdapter.updateUser(parsedFriendsList);
                     }
                 }
             };
@@ -202,6 +204,7 @@ public class ActivityFriends extends AppCompatActivity implements View.OnClickLi
                                 }
 
                                 fetchFriends();
+                                populateFriendsToAdd();
                                 dialog.cancel();
                             }
                         });
