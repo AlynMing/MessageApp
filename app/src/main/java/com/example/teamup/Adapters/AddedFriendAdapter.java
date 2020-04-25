@@ -1,5 +1,6 @@
 package com.example.teamup.Adapters;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,21 @@ public class AddedFriendAdapter extends RecyclerView.Adapter<AddedFriendAdapter.
 
     public AddedFriendAdapter(List<ParseUser> users) {
         this.users = users;
+    }
+
+    public List<ParseUser> users() {
+        return users;
+    }
+
+    public boolean containsUser(String targetUsername) {
+        for (ParseUser addedFriend : this.users) {
+            String username = addedFriend.getUsername();
+            if (TextUtils.equals(username, targetUsername)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void updateUser(List<ParseUser> users) {

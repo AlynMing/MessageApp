@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.teamup.R;
 import com.parse.FindCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -149,6 +150,18 @@ public class ActivityFriends extends AppCompatActivity implements View.OnClickLi
                     Toast.makeText(getApplicationContext(), "Failed to load users. Try Again", Toast.LENGTH_SHORT).show();
                 } else {
                     newFriendsList = objects;
+
+                    List<ParseObject> filteredFriendsList = new ArrayList<>();
+                    for (ParseObject parseObject : newFriendsList) {
+                        String username = parseObject.getString("username");
+                        boolean isUserAdded = addedfriendsAdapter.containsUser(username);
+
+                        if (!isUserAdded) {
+                            filteredFriendsList.add(parseObject);
+                        }
+                    }
+
+                    newFriendsList = filteredFriendsList;
                     addFriendsAdapter.updateUsersList(newFriendsList);
                 }
 
@@ -187,6 +200,7 @@ public class ActivityFriends extends AppCompatActivity implements View.OnClickLi
                                     populateFriendsToAdd();
                                     Toast.makeText(getApplicationContext(),  user.get("fname") + " is now your Friend.", Toast.LENGTH_SHORT).show();
                                 }
+
                                 fetchFriends();
                                 dialog.cancel();
                             }

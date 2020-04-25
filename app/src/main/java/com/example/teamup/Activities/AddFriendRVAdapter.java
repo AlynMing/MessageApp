@@ -35,6 +35,11 @@ public class AddFriendRVAdapter extends RecyclerView.Adapter<AddFriendRVAdapter.
         return new MViewHolder(view);
     }
 
+    public void removeUser(ParseObject user) {
+        this.users.remove(user);
+        notifyDataSetChanged();
+    }
+
     public void updateUsersList(List<ParseObject> users) {
         this.users = users;
         notifyDataSetChanged();
