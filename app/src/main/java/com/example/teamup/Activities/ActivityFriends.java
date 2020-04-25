@@ -1,9 +1,11 @@
 package com.example.teamup.Activities;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import com.example.teamup.Adapters.AddedFriendAdapter;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AlertDialog;
@@ -27,6 +29,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ActivityFriends extends AppCompatActivity implements View.OnClickListener, AddFriendRVAdapter.IAddFriendRVAdapter {
@@ -39,6 +42,8 @@ public class ActivityFriends extends AppCompatActivity implements View.OnClickLi
     private TextView tvNoFriendsToAdd;
     private ProgressBar pbFriendsToAdd;
     private AddFriendRVAdapter addFriendsAdapter;
+    private AddedFriendAdapter addedfriendsAdapter;
+
     private List<ParseObject> newFriendsList;
 
     @Override
@@ -50,8 +55,6 @@ public class ActivityFriends extends AppCompatActivity implements View.OnClickLi
 
         tvNoFriends = findViewById(R.id.tv_no_friends);
         rvFriends = findViewById(R.id.rv_friends);
-
-        rvFriends.setVisibility(View.GONE);
         tvNoFriends.setVisibility(View.VISIBLE);
 
         findViewById(R.id.ll_add_group).setOnClickListener(this);
@@ -59,6 +62,7 @@ public class ActivityFriends extends AppCompatActivity implements View.OnClickLi
         userID = getIntent().getStringExtra(MainActivity.EXTRA_USER_ID);
         initAddFriendDialog();
     }
+
 
     private void initAddFriendDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -71,7 +75,7 @@ public class ActivityFriends extends AppCompatActivity implements View.OnClickLi
         dialogAddFriend = builder.create();
 
         rvAddFriends.setLayoutManager(new LinearLayoutManager(this));
-        addFriendsAdapter = new AddFriendRVAdapter(this, newFriendsList, this);
+        addFriendsAdapter = new AddFriendRVAdapter(this, newFriendsList, this, true);
         rvAddFriends.setAdapter(addFriendsAdapter);
     }
 
@@ -101,21 +105,31 @@ public class ActivityFriends extends AppCompatActivity implements View.OnClickLi
     private void fetchFriends() {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Friends");
         query.whereEqualTo("userId", userID);
+        Context context = this;
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e != null) {
                     Log.e(TAG, "failed to find friends: " + e.getMessage());
                 } else {
-                   for (ParseObject po : objects) {
-                       ParseUser friend = po.getParseUser("friend");
-                       try {
-                           friend = friend.fetch();
-                           Log.d(TAG, String.format("friend: lastname=%s, first_name=%s, username=%s", friend.get("lname"), friend.get("fname"), friend.getUsername()));
-                       } catch (ParseException ex) {
-                           Log.e(TAG, "failed to fetch ParseUser: " + ex.getMessage());
-                       }
-                   }
+                    List<ParseUser> parsedFriendsList = new ArrayList<>();
+                    for (ParseObject po : objects) {
+                        ParseUser friend = po.getParseUser("friend");
+                        try {
+                            friend = friend.fetch();
+                            parsedFriendsList.add(friend);
+                            Log.d(TAG, String.format("friend: lastname=%s, first_name=%s, username=%s", friend.get("lname"), friend.get("fname"), friend.getUsername()));
+                        } catch (ParseException ex) {
+                            Log.e(TAG, "failed to fetch ParseUser: " + ex.getMessage());
+                        }
+                    }
+
+                   // Put fetch result into adapter
+                    if (addedfriendsAdapter == null) {
+                        addedfriendsAdapter = new AddedFriendAdapter(parsedFriendsList);
+                        rvFriends.setLayoutManager(new LinearLayoutManager(context));
+                        rvFriends.setAdapter(addedfriendsAdapter);
+                    }
                 }
             };
         });

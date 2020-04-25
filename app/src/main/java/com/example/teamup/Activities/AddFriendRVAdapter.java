@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.teamup.R;
-import com.parse.Parse;
 import com.parse.ParseObject;
 import java.util.List;
 
@@ -21,11 +20,13 @@ public class AddFriendRVAdapter extends RecyclerView.Adapter<AddFriendRVAdapter.
     private Context context;
     private List<ParseObject> users;
     private IAddFriendRVAdapter iListener;
+    private boolean isAddFriendList;        // Is it coming from addFirendList or addedFirendList
 
-    public AddFriendRVAdapter(Context ctx, List<ParseObject> users, IAddFriendRVAdapter iaf) {
+    public AddFriendRVAdapter(Context ctx, List<ParseObject> users, IAddFriendRVAdapter iaf, boolean isAddFriendList) {
         this.context = ctx;
         this.users = users;
         this.iListener = iaf;
+        this.isAddFriendList = isAddFriendList;
     }
     @NonNull
     @Override
@@ -66,10 +67,15 @@ public class AddFriendRVAdapter extends RecyclerView.Adapter<AddFriendRVAdapter.
                     iListener.onAddFriend(users.get(i));
                 }
             });
+
+            if (!isAddFriendList) {
+                ivAddFriend.setVisibility(View.GONE);
+            }
         }
     }
 
     public interface IAddFriendRVAdapter {
         void onAddFriend(ParseObject user);
+
     }
 }
