@@ -3,9 +3,9 @@ package com.example.teamup;
 import android.app.Application;
 
 import com.example.teamup.ParseClasses.Messages;
-import com.example.teamup.ParseClasses.User;
 import com.example.teamup.ParseClasses.Friends;
 import com.example.teamup.ParseClasses.Groups;
+import com.example.teamup.ParseClasses.Post;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
@@ -21,8 +21,8 @@ public class ParseApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        ParseObject.registerSubclass(User.class);
         ParseObject.registerSubclass(Friends.class);
+        ParseObject.registerSubclass(Post.class);
         ParseObject.registerSubclass(Groups.class);
         ParseObject.registerSubclass(Messages.class);
 
@@ -33,7 +33,7 @@ public class ParseApplication extends Application {
                 .applicationId("team-up") // should correspond to APP_ID env variable
                 .clientKey("teamUpMoving")  // set explicitly unless clientKey is explicitly configured on Parse server
                 //.clientBuilder(builder)
-                .server("http://team-up-java.herokuapp.com/parse").build());
+                .server("http://team-up-java.herokuapp.com/parse").enableLocalDataStore().build());
 
 
     }
