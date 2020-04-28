@@ -53,6 +53,7 @@ public class ActivityFriends extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_friends);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         tvNoFriends = findViewById(R.id.tv_no_friends);
         rvFriends = findViewById(R.id.rv_friends);

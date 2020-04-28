@@ -2,6 +2,7 @@ package com.example.teamup.Activities;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -52,6 +53,7 @@ public class ActivityProfile extends AppCompatActivity {
     //private EditText etphonenum;
     private Button btn_Cancel;
     private Button btn_Update;
+    private ParseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +61,60 @@ public class ActivityProfile extends AppCompatActivity {
         setContentView(R.layout.user_profile);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ParseUser currentUser = ParseUser.getCurrentUser();
+        username = findViewById(R.id.userProf_username);
+        email = findViewById(R.id.userProf_email);
+        fname = findViewById(R.id.userProf_fname);
+        lname = findViewById(R.id.userProf_lname);
+        password = findViewById(R.id.userProf_password);
+        btn_Update = findViewById(R.id.btn_Update);
+        btn_Cancel = findViewById(R.id.btn_Cancel);
+        btn_Cancel.setOnClickListener(v -> {
+            cancelButtonPressed();
+        });
+        btn_Update.setOnClickListener(v -> {
+            updateProfilePressed();
+        });
+
+        currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
+            username.setText(currentUser.getUsername());
+            fname.setText(currentUser.getString("fname"));
+            lname.setText(currentUser.getString("lname"));
+            email.setText(currentUser.getEmail());
             // do stuff with the user
         } else {
+            finish();
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
             // show the signup or login screen
         }
+
+
     }
+
+    private void cancelButtonPressed() {
+        finish();
+    }
+
+    private void updateProfilePressed() {
+        currentUser.setUsername(username.getText().toString());
+        currentUser.put("fname", fname.getText().toString());
+        currentUser.put("lname", lname.getText().toString());
+        currentUser.put("email", email.getText().toString());
+        String newPassword = password.getText().toString();
+        if (!newPassword.isEmpty()) {
+            currentUser.setPassword(newPassword);
+        }
+        currentUser.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e == null) {
+                    finish();
+                } else {
+                    // Deal with error
+                }
+            }
+        });
+    }
+
 }

@@ -51,6 +51,7 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
         //view.findViewById(R.id.ll_groups).setOnClickListener(this);
         view.findViewById(R.id.ll_log_out).setOnClickListener(this);
         view.findViewById(R.id.ll_messages).setOnClickListener(this);
+        view.findViewById(R.id.takePhotoButton).setOnClickListener(this);
         return view;
     }
 
@@ -90,6 +91,10 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
                 mListener.onLogout();
                 break;
             }
+            case R.id.takePhotoButton: {
+                mListener.onTakePhoto();
+                break;
+            }
         }
     }
 
@@ -99,5 +104,7 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
         public void onLogout();
         //public void onViewGroups();
         public void onViewMessages();
+
+        void onTakePhoto();
     }
 }

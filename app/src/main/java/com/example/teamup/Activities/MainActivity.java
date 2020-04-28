@@ -26,6 +26,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.teamup.Fragments.FragmentHome;
 import com.example.teamup.R;
 import com.google.android.material.navigation.NavigationView;
+import com.parse.ParseUser;
 //import com.example.teamup.fragments.ProfileFragment;
 
 //----------------------------------------------------------------------------------
@@ -56,8 +57,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        ImageView back = findViewById(R.id.back_btn);
         setSupportActionBar(toolbar);
+
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if (currentUser == null) {
+            goToLogin();
+        }
         userID = getIntent().getStringExtra(EXTRA_USER_ID);
 
 
@@ -86,18 +91,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //    .addToBackStack(CATEGORY)
         //  .commit();
 
-        //----------------------------------------------------------------------------------
-        // Functionality for back button
-        //----------------------------------------------------------------------------------
-        back.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                Log.d("CLICK", "click works");
-                fragmentManager.popBackStack();
+    }
 
-            }
-        });
+    private void goToLogin() {
+        finish();
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
     }
 
     @Override
@@ -161,6 +161,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
     @Override
     public void onViewFriends() {
@@ -171,10 +175,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onLogout() {
-        finish();
+        ParseUser.logOut();
+        goToLogin();
     }
 
-   /* @Override
+    @Override
+    public void onTakePhoto() {
+        Intent i = new Intent(this, TakePhotoActivity.class);
+        startActivity(i);
+    }
+
+    /* @Override
     public void onViewGroups() {
         Intent i = new Intent(this, ActivityGroups.class);
         i.putExtra(EXTRA_USER_ID, userID);

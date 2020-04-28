@@ -25,6 +25,7 @@ public class ActivityMessages extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_messages);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         tvNoMessages = findViewById(R.id.tv_no_messagess);
         rvMessages = findViewById(R.id.rv_messagess);
