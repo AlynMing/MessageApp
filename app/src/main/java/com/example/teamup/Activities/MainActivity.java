@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onViewMessages() {
-        Intent i = new Intent(this, ActivityMessages.class);
+        Intent i = new Intent(this, ChatActivity.class);
         i.putExtra(EXTRA_USER_ID, userID);
         startActivity(i);
     }
