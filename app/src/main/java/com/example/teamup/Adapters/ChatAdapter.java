@@ -18,12 +18,12 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.List;
 
-public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHolder> {
+public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     private List<Message> mMessages;
     private Context mContext;
     private String mUserId;
 
-    public MessagesAdapter(Context context, String userId, List<Message> messages) {
+    public ChatAdapter(Context context, String userId, List<Message> messages) {
         mMessages = messages;
         this.mUserId = userId;
         mContext = context;
@@ -33,7 +33,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View contactView = inflater.inflate(R.layout.item_message, parent, false);
+        View contactView = inflater.inflate(R.layout.item_chat, parent, false);
 
         ViewHolder viewHolder = new ViewHolder(contactView);
         return viewHolder;

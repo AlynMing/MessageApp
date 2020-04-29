@@ -2,7 +2,7 @@ package com.example.teamup;
 
 import android.app.Application;
 
-import com.example.teamup.ParseClasses.Messages;
+import com.example.teamup.ParseClasses.Message;
 import com.example.teamup.ParseClasses.Friends;
 import com.example.teamup.ParseClasses.Groups;
 import com.example.teamup.ParseClasses.Post;
@@ -24,7 +24,7 @@ public class ParseApplication extends Application {
         ParseObject.registerSubclass(Friends.class);
         ParseObject.registerSubclass(Post.class);
         ParseObject.registerSubclass(Groups.class);
-        ParseObject.registerSubclass(Messages.class);
+        ParseObject.registerSubclass(Message.class);
 
         // set applicationId, and server server based on the values in the Heroku settings.
         // clientKey is not needed unless explicitly configured

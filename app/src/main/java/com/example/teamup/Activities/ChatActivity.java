@@ -8,14 +8,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.teamup.ParseClasses.Message;
 import com.example.teamup.R;
-import com.parse.ParseException;
 import com.parse.ParseObject;
-import com.parse.SaveCallback;
+import com.parse.ParseUser;
 
 import static com.example.teamup.Activities.MainActivity.EXTRA_USER_ID;
-import static com.example.teamup.ParseClasses.Messages.BODY_KEY;
-import static com.example.teamup.ParseClasses.Messages.USER_ID_KEY;
+import static com.example.teamup.ParseClasses.Message.BODY_KEY;
+import static com.example.teamup.ParseClasses.Message.USER_ID_KEY;
 
 public class ChatActivity extends AppCompatActivity {
     EditText etMessage;
@@ -34,10 +34,16 @@ public class ChatActivity extends AppCompatActivity {
 
     private void setupMessagePosting() {
         btSend.setOnClickListener(v -> {
+
             String data = etMessage.getText().toString();
-            ParseObject message = ParseObject.create("Message");
-            message.put(USER_ID_KEY, loggedInUserId);
-            message.put(BODY_KEY, data);
+//            ParseObject message = ParseObject.create("Message");
+//            message.put(USER_ID_KEY, loggedInUserId);
+//            message.put(BODY_KEY, data);
+
+            Message message = new Message();
+            message.setBody(data);
+            message.setUserId(ParseUser.getCurrentUser().getObjectId());
+
             message.saveInBackground(e -> {
                 if(e == null) {
                     Toast.makeText(ChatActivity.this, "Successfully created message on Parse",

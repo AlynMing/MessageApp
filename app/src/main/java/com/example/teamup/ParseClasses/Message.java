@@ -6,10 +6,10 @@ import com.parse.ParseObject;
 //----------------------------------------------------------------------------------
 // Creating an object for each group
 //----------------------------------------------------------------------------------
-@ParseClassName("Messages")
-public class Messages extends ParseObject {
+@ParseClassName("Message")
+public class Message extends ParseObject {
 
-    public Messages() { super(); }
+    public Message() { super(); }
     public static final String USER_ID_KEY = "userId";
     public static final String BODY_KEY = "body";
 
