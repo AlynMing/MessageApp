@@ -31,19 +31,19 @@ Teamup is a messaging app where users can send friends private messages from the
 * User can register and log into an account - completed
 * User can add new friends - completed
 * User can view all friends- completed
-* User can create message
+* User can create message- completed
 * User can add friends - completed
 * User profile screen - created
-* Add profile picture
-* User can view all messages
+* Add profile picture - completed
+* User can view all messages - completed
 
 
 **Optional Nice-to-have Stories**
 
 * User can search messages
-* User can change settings
+* User can change settings - user can update profile
 * Add location
-* Take pictures
+* Take pictures - user can take pictures
 
 
 ### 2. Screen Archetypes
