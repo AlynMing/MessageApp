@@ -2,4 +2,5 @@
 <resources>
     <item name="tv_no_messages" type="id" />
     <item name="rv_messages" type="id" />
+    <item name="ivProfileOther" type="id" />
 </resources>

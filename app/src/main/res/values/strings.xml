@@ -27,4 +27,7 @@
     <string name="no_friends_to_add">No Friends To Add</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+
+    <string name="profile_me">My Profile Pic</string>
+    <string name="profile_other">Other profile pic</string>
 </resources>

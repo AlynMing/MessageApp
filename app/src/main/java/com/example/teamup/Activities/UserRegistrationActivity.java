@@ -90,7 +90,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
             // Get the text from form
             String fname = etfname.getText().toString();
             String lname = etlname.getText().toString();
-           // String image = etimage.getText().tostring();
+           //String image = etimage.getText().tostring();
             String name = fname + " " + lname;
             String email = etemail.getText().toString();
             String password = etpassword.getText().toString();

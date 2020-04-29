@@ -3,6 +3,7 @@
     package="com.example.teamup">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".ParseApplication"
@@ -13,6 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activities.ChatActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activities.MainActivity">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.teamup.fileprovider"
@@ -22,9 +37,11 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/fileprovider" />
         </provider>
-        <activity android:name=".Activities.TakePhotoActivity"
+
+        <activity
+            android:name=".Activities.TakePhotoActivity"
             android:label="Take Photo"
-            android:parentActivityName=".Activities.MainActivity"></activity>
+            android:parentActivityName=".Activities.MainActivity" />
         <activity
             android:name=".Activities.ActivityMessages"
             android:label="Messages"
@@ -33,7 +50,7 @@
             android:name=".Activities.ActivityFriends"
             android:label="@string/title_activity_friends"
             android:parentActivityName=".Activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.ActivityProfile"
             android:label="Profile"
@@ -42,15 +59,8 @@
             android:name=".Activities.ActivityGroups"
             android:label="@string/title_activity_groups"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".Activities.UserRegistrationActivity" />
-        <activity android:name=".Activities.LoginActivity"></activity>
+        <activity android:name=".Activities.LoginActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

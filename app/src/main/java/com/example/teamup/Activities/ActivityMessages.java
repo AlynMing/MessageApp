@@ -9,48 +9,89 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.teamup.R;
+import com.parse.LogInCallback;
+import com.parse.ParseAnonymousUtils;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
-public class ActivityMessages extends AppCompatActivity implements View.OnClickListener {
-    //RecyclerView rvFriends;
-    //TextView tvNoFriends;
-    RecyclerView rvMessages;
-    TextView tvNoMessages;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_messages);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+public class ActivityMessages extends AppCompatActivity {
+    static final String TAG = ActivityMessages.class.getSimpleName();
 
-        tvNoMessages = findViewById(R.id.tv_no_messagess);
-        rvMessages = findViewById(R.id.rv_messagess);
+    static final String USER_ID_KEY = "userId";
+    static final String BODY_KEY = "body";
 
-        rvMessages.setVisibility(View.GONE);
-        tvNoMessages.setVisibility(View.VISIBLE);
+    EditText etMessage;
+    Button btSend;
+    //@Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_messages);
+//        // User login
+//        if (ParseUser.getCurrentUser() != null) { // start with existing user
+//            startWithCurrentUser();
+//        } else { // If not logged in, login as a new anonymous user
+//            login();
+//        }
+//    }
+//
+//    // Get the userId from the cached currentUser object
+//    void startWithCurrentUser() {
+//        // TODO:
+//    }
 
-        findViewById(R.id.ll_add_group).setOnClickListener(this);
-        findViewById(R.id.ll_add_friends).setOnClickListener(this);
-    }
+    // Create an anonymous user using ParseAnonymousUtils and set sUserId
+//    void login() {
+//        ParseAnonymousUtils.logIn(new LogInCallback() {
+//            @Override
+//            public void done(ParseUser user, ParseException e) {
+//                if (e != null) {
+//                    Log.e(TAG, "Anonymous login failed: ", e);
+//                } else {
+//                    startWithCurrentUser();
+//                }
+//            }
+//        });
+//    }
 
-    @Override
-    public void onClick(View v) {
-        switch(v.getId()) {
-            case R.id.ll_add_friends: {
-                // TODO: implement code for adding new friend
-                Snackbar.make(rvMessages, getString(R.string.under_developmennt), Snackbar.LENGTH_SHORT).show();
-                break;
+
+
+    // Setup button event handler which posts the entered message to Parse
+    void setupMessagePosting() {
+        // Find the text field and button
+        etMessage = (EditText) findViewById(R.id.etMessage);
+        btSend = (Button) findViewById(R.id.btSend);
+        // When send button is clicked, create message object on Parse
+        btSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String data = etMessage.getText().toString();
+                ParseObject message = ParseObject.create("Message");
+                message.put(USER_ID_KEY, ParseUser.getCurrentUser().getObjectId());
+                message.put(BODY_KEY, data);
+                message.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if(e == null) {
+                            Toast.makeText(ActivityMessages.this, "Successfully created message on Parse",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            Log.e(TAG, "Failed to save message", e);
+                        }
+                    }
+                });
+                etMessage.setText(null);
             }
-            case R.id.ll_add_group: {
-                // TODO: implement code for adding new group
-                Snackbar.make(rvMessages, getString(R.string.under_developmennt), Snackbar.LENGTH_SHORT).show();
-                break;
-            }
-        }
+        });
     }
 
 }
