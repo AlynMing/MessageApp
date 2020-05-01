@@ -121,6 +121,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 //Toast.makeText(MainActivity.this, "nav_profile", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, ActivityProfile.class));
                 break;
+            case R.id.nav_map:
+                //Toast.makeText(MainActivity.this, "nav_profile", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, MapsActivity.class));
+                break;
 
         }
 
